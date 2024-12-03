@@ -28,15 +28,15 @@ func run(part2 bool, input string) any {
 	// Process the input into two sorted arrays
 	lines := strings.Split(input, "\n")
 	
-	var list1 []float64
-	var list2 []float64
+	var list1 []int
+	var list2 []int
 
 	for _, line := range lines {
 		parts := strings.Split(line, "   ")
-		if value1, err := strconv.ParseFloat(parts[0], 64); err == nil {
+		if value1, err := strconv.Atoi(parts[0]); err == nil {
 			list1 = append(list1, value1)
 		}
-		if value2, err := strconv.ParseFloat(parts[1], 64); err == nil {
+		if value2, err := strconv.Atoi(parts[1]); err == nil {
 			list2 = append(list2, value2)
 		}
 	}
@@ -45,11 +45,11 @@ func run(part2 bool, input string) any {
 	slices.Sort(list2)
 
 	// calculate the distance between the two
-	var distance float64
+	var distance int
 	distance = 0
 	for lcv := 0; lcv < len(list1); lcv++ {
-		distance = distance + math.Abs(list1[lcv] - list2[lcv])
+		distance = distance + int(math.Abs(float64(list1[lcv]-list2[lcv])))
 	}
 
-	return int(distance)
+	return distance
 }
