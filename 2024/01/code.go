@@ -21,13 +21,9 @@ func main() {
 // 4. with: true (part2), and user input
 // the return value of each run is printed to stdout
 func run(part2 bool, input string) any {
-	// when you're ready to do part 2, remove this "not implemented" block
-	if part2 {
-		return "not implemented"
-	}
 	// Process the input into two sorted arrays
 	lines := strings.Split(input, "\n")
-	
+
 	var list1 []int
 	var list2 []int
 
@@ -44,7 +40,22 @@ func run(part2 bool, input string) any {
 	slices.Sort(list1)
 	slices.Sort(list2)
 
-	// calculate the distance between the two
+	// calculate the similarity score and return the result for part 2
+	if part2 {
+		dictList2 := make(map[int]int)
+		for _, num := range list2 {
+			dictList2[num] = dictList2[num] + 1
+		}
+
+		var similarity int
+		similarity = 0
+		for lcv := 0; lcv < len(list1); lcv++ {
+			similarity = similarity + (list1[lcv] * dictList2[list1[lcv]])
+		}
+		return similarity
+	}
+
+	// calculate the distance between the two and return the result for part 1
 	var distance int
 	distance = 0
 	for lcv := 0; lcv < len(list1); lcv++ {
