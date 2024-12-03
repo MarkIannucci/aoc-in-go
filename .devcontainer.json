@@ -5,7 +5,10 @@
       "extensions": ["golang.go"]
     },
     "vscode": {
-      "extensions": ["golang.go"]
+      "extensions": [
+        "golang.go",
+        "GitHub.copilot"
+      ]
     }
   },
   "features": {
