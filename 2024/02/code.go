@@ -68,6 +68,18 @@ func run(part2 bool, input string) any {
 
 	// when you're ready to do part 2, remove this "not implemented" block
 	if part2 {
+		for _, line := range lines {
+			parts := strings.Split(line, " ")
+
+			// convert the parts to integers
+			partsInt := make([]int, len(parts))
+			for i, part := range parts {
+				if value, err := strconv.Atoi(part); err == nil {
+					partsInt[i] = value
+				}
+			}
+
+		}
 		return "not implemented"
 	}
 	// solve part 1 here
