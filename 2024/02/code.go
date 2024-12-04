@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"slices"
 	"strconv"
 	"strings"
@@ -67,6 +68,8 @@ func run(part2 bool, input string) any {
 
 	// when you're ready to do part 2, remove this "not implemented" block
 	if part2 {
+		var safeLines int
+		safeLines = 0
 		for _, line := range lines {
 			parts := strings.Split(line, " ")
 
@@ -78,8 +81,39 @@ func run(part2 bool, input string) any {
 				}
 			}
 
+			var ruleViolators int
+			ruleViolators = 0
+			// determine if the parts are increasing or decreasion
+			fmt.Println(partsInt)
+			if partsInt[0] < partsInt[len(partsInt)-1] {
+				
+				// increasing
+				// itreate through the parts and check if the difference between each part is at least 1 and not more than 3
+				for i := 0; i < len(partsInt)-1; i++ {
+					if partsInt[i+1]-partsInt[i] <= 0 {
+						ruleViolators = ruleViolators + 1
+					}
+					if partsInt[i+1]-partsInt[i] >= 4 {
+						ruleViolators = ruleViolators + 1
+					}
+				}
+			} else {
+				for i := 0; i < len(partsInt)-1; i++ {
+					if partsInt[i+1]-partsInt[i] >= 0 {
+						ruleViolators = ruleViolators + 1
+					}
+					if partsInt[i+1]-partsInt[i] <= -4 {
+						ruleViolators = ruleViolators + 1
+					}
+				}
+			}
+			fmt.Println(ruleViolators)
+			
+			if ruleViolators < 2 {
+				safeLines = safeLines + 1
+			}
 		}
-		return "not implemented"
+		return safeLines
 	}
 	// solve part 1 here
 	return safeLines
