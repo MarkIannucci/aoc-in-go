@@ -61,7 +61,6 @@ func run(part2 bool, input string) any {
 		}
 		if safe {
 			safeLines = safeLines + 1
-		} else {
 		}
 
 	}
